@@ -50,8 +50,8 @@ module Make = (Config: Config) => {
       executionResult.data |> ReasonApolloUtils.getNonEmptyObj,
       executionResult.errors |> Js.Nullable.toOption,
     ) {
-    | (Some(data), _) => Data(Config.parse(data))
     | (_, Some(errors)) => Errors(errors)
+    | (Some(data), _) => Data(Config.parse(data))
     | (None, None) => EmptyResponse
     };
 
@@ -84,8 +84,8 @@ module Make = (Config: Config) => {
         apolloData.error |> Js.Nullable.toOption,
       ) {
       | (true, _, _) => Loading
-      | (false, Some(data), _) => Data(Config.parse(data))
       | (false, _, Some(error)) => Error(error)
+      | (false, Some(data), _) => Data(Config.parse(data))
       | (false, None, None) => NotCalled
       };
 

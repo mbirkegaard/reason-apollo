@@ -74,8 +74,8 @@ module Make = (Config: ReasonApolloTypes.Config) => {
         apolloData.error |> Js.Nullable.toOption,
       ) {
       | (true, _, _) => Loading
-      | (false, Some(response), _) => Data(Config.parse(response))
       | (false, _, Some(error)) => Error(error)
+      | (false, Some(response), _) => Data(Config.parse(response))
       | (false, None, None) =>
         Error({
           message: "No data",
